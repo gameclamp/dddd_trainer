@@ -44,12 +44,19 @@ class Config(object):
         }
 
 
-    def make_config(self, config_dict=None, single: bool = False):
+    def make_config(self, config_dict=None, single: bool = False,image_height:str = "64",image_channel:str = "1",batch_size:str = "32",test_batch_size:str = "32"):
         if not config_dict:
             config_dict = self.config_dict
             if single:
                 config_dict['Model']['Word'] = True
-
+            if image_height:
+                config_dict['Model']['ImageHeight'] = int(image_height)
+            if image_channel:
+                config_dict['Model']['ImageChannel'] = int(image_channel)
+            if batch_size:
+                config_dict['Train']['BATCH_SIZE'] = int(batch_size)
+            if test_batch_size:
+                config_dict['Train']['TEST_BATCH_SIZE'] = int(test_batch_size)
             config_dict["System"]["Project"] = self.project_name
         config_path = os.path.join(self.base_path, self.project_name, "config.yaml")
         with open(config_path, 'w', encoding="utf-8") as f:
