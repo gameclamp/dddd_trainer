@@ -8,7 +8,7 @@ class ProjectManager:
     def __init__(self):
         self.base_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "projects")
 
-    def create_project(self, project_name: str, single: bool = False):
+    def create_project(self, project_name: str, single: bool = False,image_height:str = "64",image_channel:str = "1",batch_size:str = "32",test_batch_size:str = "32"):
         project_base_path = os.path.join(self.base_path, project_name)
         logger.info("Creating Directory... ----> {}".format(project_base_path))
         if not os.path.exists(project_base_path):
@@ -31,7 +31,7 @@ class ProjectManager:
             config_path = os.path.join(os.path.join(project_base_path, "config.yaml"))
             logger.info("Creating {} Config File... ----> {}".format("CNN" if single else "CRNN", config_path))
             conf = Config(project_name)
-            conf.make_config(single=single)
+            conf.make_config(single=single,image_height=image_height,image_channel=image_channel,batch_size=batch_size,test_batch_size=test_batch_size)
 
             logger.info("Create Project Success! ----> {}".format(project_name))
         else:
