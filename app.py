@@ -11,10 +11,10 @@ class App:
     def __init__(self):
         logger.info("\nHello baby~")
 
-    def create(self, project_name: str, single: bool = False):
+    def create(self, project_name: str, single: bool = False,image_height:str="64",image_channel:str="1",batch_size:str="32",test_batch_size:str="32"):
         logger.info("\nCreate Project ----> {}".format(project_name))
         pm = project_manager.ProjectManager()
-        pm.create_project(project_name, single)
+        pm.create_project(project_name, single,image_height,image_channel,batch_size,test_batch_size)
 
     def cache(self, project_name: str, base_path: str, search_type: str = "name"):
         logger.info("\nCaching Data ----> {}\nPath ----> {}".format(project_name, base_path))
